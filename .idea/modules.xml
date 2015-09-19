@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/AdnroidUI.iml" filepath="$PROJECT_DIR$/AdnroidUI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/viewflipper/viewflipper.iml" filepath="$PROJECT_DIR$/viewflipper/viewflipper.iml" />
+    </modules>
+  </component>
+</project>
