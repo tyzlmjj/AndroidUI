@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="theme_Day">#3F51B5</color>
+    <color name="textColorFirst_Day">#DD000000</color>
+    <color name="textColorSecond_Day">#89000000</color>
+    <color name="textColorThird_Day">#42000000</color>
+    <color name="background_Day">#FFFFFF</color>
+    <!--Toolbar字体颜色  -->
+    <color name="toolbar_Text_Color_Day">#DDFFFFFF</color>
+    <!--Toolbar-Menu字体颜色-->
+    <color name="toolbar_Menu_Text_Color_Day">#DD000000</color>
+    <!--Toolbar背景  -->
+    <color name="topbar_Background_Day">#3F51B5</color>
+    <!--主页item背景色-->
+    <color name="main_item_background_Day">#FFFFFF</color>
+<!--
+     &lt;!&ndash;状态栏背景&ndash;&gt;
+    <color name="PrimaryDarkColor_Day">#303F9F</color>-->
+
+
+
+
+    <!--夜间模式-->
+    <color name="theme_Night">#493518</color>
+    <color name="textColorFirst_Night">#DDFFFFFF</color>
+    <color name="textColorSecond_Night">#89FFFFFF</color>
+    <color name="textColorThird_Night">#42FFFFFF</color>
+    <color name="background_Night">#FF424242</color>
+    <!--Toolbar字体颜色  -->
+    <color name="toolbar_Text_Color_Night">#DDFFFFFF</color>
+    <!--Toolbar-Menu字体颜色-->
+    <color name="toolbar_Menu_Text_Color_Night">#DD000000</color>
+    <!--Toolbar背景  -->
+    <color name="topbar_Background_Night">#212121</color>
+    <!--主页item背景色-->
+    <color name="main_item_background_Night">#616161</color>
+
+</resources>

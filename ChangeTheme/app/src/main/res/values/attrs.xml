@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="textColorFirst" format="color"/>
+    <attr name="textColorSecond" format="color"/>
+    <attr name="textColorThird" format="color"/>
+    <attr name="toolbar_Text_Color" format="color"/>
+    <attr name="toolbar_Background_Color" format="color"/>
+    <attr name="toolbar_Menu_Text_Color" format="color"/>
+    <attr name="main_item_background" format="color"/>
+    <attr name="main_menu_changetheme" format="string"/>
+
+
+    <attr name="myTheme" format="integer">
+        <enum name="day" value="0"/>
+        <enum name="night" value="1"/>
+    </attr>
+</resources>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:layout_marginBottom="6dp"
+    android:layout_marginTop="6dp"
+    app:cardBackgroundColor="?attr/main_item_background"
+    android:foreground="?android:attr/selectableItemBackground"
+    >
+    <TextView
+        android:id="@+id/tv_titlt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="这是一行字"
+        android:textColor="?attr/textColorFirst"
+        android:textSize="16sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"/>
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="这是第二行字"
+        android:textColor="?attr/textColorSecond"
+        android:textSize="13sp"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="5dp"
+        />
+</android.support.v7.widget.CardView>
