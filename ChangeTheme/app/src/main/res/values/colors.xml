@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <!--日间模式-->
     <color name="theme_Day">#3F51B5</color>
     <color name="textColorFirst_Day">#DD000000</color>
     <color name="textColorSecond_Day">#89000000</color>
@@ -14,9 +14,6 @@
     <color name="topbar_Background_Day">#3F51B5</color>
     <!--主页item背景色-->
     <color name="main_item_background_Day">#FFFFFF</color>
-<!--
-     &lt;!&ndash;状态栏背景&ndash;&gt;
-    <color name="PrimaryDarkColor_Day">#303F9F</color>-->
 
 
 

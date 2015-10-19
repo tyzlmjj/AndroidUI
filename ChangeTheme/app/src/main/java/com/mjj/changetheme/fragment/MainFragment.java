@@ -45,7 +45,8 @@ public class MainFragment extends Fragment implements RecyclerAdapter.OnItemClic
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frament_main_content, container, false);
-        setActionBar((Toolbar) view.findViewById(R.id.toolbar));
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        setActionBar(toolbar);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycleview);
         setAdapter();
         return view;

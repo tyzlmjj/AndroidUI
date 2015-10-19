@@ -7,9 +7,10 @@
     >
     <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/toolbar"
-        android:layout_height="56dp"
+        android:layout_height="?attr/toolbar_height"
         android:layout_width="match_parent"
         android:background="?attr/colorPrimary"
+        android:paddingTop="?attr/toolbar_paddingtop"
         app:theme="@style/MyToolbar"
         />
     <android.support.v7.widget.RecyclerView

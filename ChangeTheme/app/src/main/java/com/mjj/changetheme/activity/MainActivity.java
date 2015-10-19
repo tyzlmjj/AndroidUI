@@ -36,9 +36,14 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnRe
         setTheme(MyAppliction.getThemeResources());
         setContentView(R.layout.activity_main);
 
-        addFragment(0,0);
+        addFragment(0, 0);
         initView();
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
     }
 
     @Override
@@ -47,6 +52,9 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnRe
         save();
     }
 
+    /**
+     * 主题选择的本地存储
+     */
     private void save() {
         SharedPreferences sharedPreferences = getSharedPreferences("theme",MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -78,6 +86,11 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnRe
         mImageView = (ImageView) findViewById(R.id.imageview);
     }
 
+    /**
+     * 添加Fragment,如果已存在Fragment就先移除在添加
+     * @param position
+     * @param scroll
+     */
     private void addFragment(int position,int scroll) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -89,10 +102,13 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnRe
         bundle.putInt("position",position);
         bundle.putInt("scroll",scroll);
         mMainFragment.setArguments(bundle);
-        fragmentTransaction.add(R.id.layout_fragment,mMainFragment);
+        fragmentTransaction.add(R.id.layout_fragment, mMainFragment);
         fragmentTransaction.commit();
     }
 
+    /**
+     * 改变主题
+     */
     private void changeTheme(){
         setDrawableCahe();
         setTheme();
@@ -100,6 +116,9 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnRe
 
     }
 
+    /**
+     * 获取当前fragment状态，在Demo中简单演示了RecyclerView的位置恢复
+     */
     public void getState() {
 
         RecyclerView recyclerView = mMainFragment.getRecyclerView();
@@ -114,6 +133,9 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnRe
 
     }
 
+    /**
+     * 获取布局的DrawableCahe给ImageView覆盖Fragment
+     */
     private void setDrawableCahe() {
         //设置false清除缓存
         mViewGroup.setDrawingCacheEnabled(false);
@@ -124,10 +146,14 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnRe
         mImageView.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * 设置主题
+     */
     private void setTheme() {
         TypedValue typedValue = new TypedValue();
         getTheme().resolveAttribute(R.attr.myTheme, typedValue, true);
         switch (typedValue.data){
+
             case Theme.DAYTHEME:
                 MyAppliction.setThemeValue(Theme.NIGHTTHEME);
                 setTheme(Theme.RESOURCES_NIGHTTHEME);
@@ -139,13 +165,25 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnRe
         }
     }
 
+    /**
+     * Fragment状态恢复完毕的监听回调
+     */
+    @Override
+    public void recyclerViewCreated() {
+        startAnimation(mImageView);
+    }
+
+    /**
+     * ImageView的动画
+     * @param view
+     */
     private void startAnimation(final View view) {
         ValueAnimator animator = ValueAnimator.ofFloat(1f).setDuration(ANIMTION_TIME);
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 float n = (float) animation.getAnimatedValue();
-                view.setAlpha(1f - n );
+                view.setAlpha(1f - n);
             }
         });
         animator.addListener(new AnimatorListenerAdapter() {
@@ -159,8 +197,4 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnRe
     }
 
 
-    @Override
-    public void recyclerViewCreated() {
-        startAnimation(mImageView);
-    }
 }

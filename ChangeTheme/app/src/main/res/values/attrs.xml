@@ -10,6 +10,8 @@
     <attr name="main_item_background" format="color"/>
     <attr name="main_menu_changetheme" format="string"/>
 
+    <attr name="toolbar_height" format="dimension"/>
+    <attr name="toolbar_paddingtop" format="dimension"/>
 
     <attr name="myTheme" format="integer">
         <enum name="day" value="0"/>

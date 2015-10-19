@@ -2,7 +2,8 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-
+        <item name="toolbar_height">?attr/actionBarSize</item>
+        <item name="toolbar_paddingtop">0dp</item>
     </style>
 
     <!--日间主题-->
@@ -12,20 +13,14 @@
         <item name="colorPrimary">@color/topbar_Background_Day</item>
         <item name="toolbar_Menu_Text_Color">@color/toolbar_Menu_Text_Color_Day</item>
         <item name="toolbar_Text_Color">@color/toolbar_Text_Color_Day</item>
-        <!--&lt;!&ndash;状态栏背景&ndash;&gt;
-        <item name="colorPrimaryDark">@color/PrimaryDarkColor_Day</item>-->
         <!--页面背景-->
         <item name="android:windowBackground">@color/background_Day</item>
         <!--主页item背景色-->
         <item name="main_item_background">@color/main_item_background_Day</item>
-        <!--&lt;!&ndash;控件选中颜色  &ndash;&gt;
-        <item name="colorAccent">@color/theme_Day</item>-->
-
+        <!--三种文字颜色-->
         <item name="textColorFirst">@color/textColorFirst_Day</item>
         <item name="textColorSecond">@color/textColorSecond_Day</item>
         <item name="textColorThird">@color/textColorThird_Day</item>
-
-
         <!--Actionbar-Menu-文字-->
         <item name="main_menu_changetheme">@string/main_menu_changetheme_day</item>
     </style>
@@ -41,11 +36,10 @@
         <item name="android:windowBackground">@color/background_Night</item>
         <!--主页item背景色-->
         <item name="main_item_background">@color/main_item_background_Night</item>
-
+        <!--三种文字颜色-->
         <item name="textColorFirst">@color/textColorFirst_Night</item>
         <item name="textColorSecond">@color/textColorSecond_Night</item>
         <item name="textColorThird">@color/textColorThird_Night</item>
-
         <!--Actionbar-Menu-文字-->
         <item name="main_menu_changetheme">@string/main_menu_changetheme_night</item>
     </style>
