@@ -66,7 +66,6 @@ public class ClearEditText extends AppCompatEditText {
     }
 
     private void init(Context context) {
-        setSingleLine();
 
         mBitmap_clear = createBitmap(CLEAR,context);
 

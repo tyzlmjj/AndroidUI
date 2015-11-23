@@ -43,7 +43,8 @@ public class PasswordEditText extends ClearEditText{
     }
 
     private void init(Context context) {
-        //设置EditText文本为隐藏的
+        setSingleLine();
+        //设置EditText文本为隐藏的(注意！需要在setSingleLine()之后调用)
         setTransformationMethod(PasswordTransformationMethod.getInstance());
 
         mWidth = getmWidth_clear();
