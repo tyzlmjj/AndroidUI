@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?><LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:theme="@style/ButtonTheme"
+    >
+   	<Button
+   	    android:id="@+id/button"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="普通"
+		android:textColor="#DDFFFFFF"
+		style="@style/Widget.AppCompat.Button"/>
+   	
+   	<Button
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="小的"
+		android:textColor="#DDFFFFFF"
+		style="@style/Widget.AppCompat.Button.Small"
+		/>
+	
+	<Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="透明的背景"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:theme="@style/Theme.AppCompat.Light"
+        />
+</LinearLayout>

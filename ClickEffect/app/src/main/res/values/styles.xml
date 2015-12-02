@@ -1,0 +1,18 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!--按钮主题  -->
+    <style name="ButtonTheme" parent="AppTheme">
+        <item name="colorButtonNormal">@color/colorAccent</item><!--正常状态下的颜色  -->
+        <item name="colorControlHighlight">#22000000</item><!--焦点或者点击的覆盖色  -->
+    </style>
+
+
+</resources>
