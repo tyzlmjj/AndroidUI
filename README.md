@@ -7,7 +7,7 @@
 - ChengeTheme   http://blog.csdn.net/tyzlmjj/article/details/49255019
 - ClearEditText http://blog.csdn.net/tyzlmjj/article/details/49156765
 - ClickEffect 	http://blog.csdn.net/tyzlmjj/article/details/50096777
-
+- MaterialProgressDrawable 	http://blog.csdn.net/tyzlmjj/article/details/50557397
 
 ###GitHub下载单个文件夹教程：
 
