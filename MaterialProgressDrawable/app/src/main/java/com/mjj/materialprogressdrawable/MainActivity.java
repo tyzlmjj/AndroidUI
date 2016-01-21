@@ -1,5 +1,7 @@
 package com.mjj.materialprogressdrawable;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -40,7 +42,11 @@ public class MainActivity extends AppCompatActivity {
 
     private ValueAnimator valueAnimator;
 
-    public void doAnim_Visable(View v)
+    boolean start = false;
+
+    boolean visable = false;
+
+    public void visable(View v)
     {
         if(valueAnimator == null)
         {
@@ -52,37 +58,42 @@ public class MainActivity extends AppCompatActivity {
                 public void onAnimationUpdate(ValueAnimator animation) {
                     float n = (float) animation.getAnimatedValue();
                     //圈圈的旋转角度
-                    mProgress.setProgressRotation(n*0.5f);
+                    mProgress.setProgressRotation(n * 0.5f);
                     //圈圈周长，0f-1F
-                    mProgress.setStartEndTrim(0f, n*0.8f);
+                    mProgress.setStartEndTrim(0f, n * 0.8f);
                     //箭头大小，0f-1F
                     mProgress.setArrowScale(n);
                     //透明度，0-255
-                    mProgress.setAlpha((int) (255*n));
+                    mProgress.setAlpha((int) (255 * n));
+                }
+            });
+            valueAnimator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    super.onAnimationEnd(animation);
+                    visable = true;
                 }
             });
         }
 
         if(!valueAnimator.isRunning())
         {
-            if(mProgress.getAlpha()==255)
-            {
-                Toast.makeText(this, "已经显示了呀！还想怎样", Toast.LENGTH_SHORT).show();
-            }
-            else
+            if(!visable)
             {
                 //是否显示箭头
                 mProgress.showArrow(true);
                 valueAnimator.start();
             }
+            else
+            {
+                Toast.makeText(this,"看不见吗？",Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
-    boolean start = false;
-
     public void start(View v)
     {
-        if(mProgress.getAlpha() == 255)
+        if(visable)
         {
             if (!start)
             {
@@ -105,8 +116,8 @@ public class MainActivity extends AppCompatActivity {
         if (start)
         {
             mProgress.stop();
-            mProgress.setStartEndTrim(0f, 0.8f);
             start = false;
+            visable = false;
         }
         else
         {
