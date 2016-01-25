@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.mjj.nestedscroll.view.MyFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#555555"
+    tools:context="com.mjj.nestedscroll.MainActivity">
+    <com.mjj.nestedscroll.view.MyImageView
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:src="@drawable/image2"
+        />
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:layout_marginTop="200dp"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:text="@string/large_text_first" />
+    </android.support.v4.widget.NestedScrollView>
+
+
+</com.mjj.nestedscroll.view.MyFrameLayout>
