@@ -145,6 +145,3 @@ JNIEXPORT jintArray JNICALL Java_com_mjj_gaussianblur_GaussianBlur_toGaussianBlu
 }
 
 
-
-
-

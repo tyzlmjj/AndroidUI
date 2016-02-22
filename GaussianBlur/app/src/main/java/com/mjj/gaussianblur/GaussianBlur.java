@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Build;
 import android.renderscript.Allocation;
@@ -22,6 +23,7 @@ public class GaussianBlur
     }
 
     public static native int[] toGaussianBlur(int[] pix,int radius,int width,int height);
+    public static native void toBoxBlur(int[] pix,int[] newPix,int radius,int width,int height);
 
     /**
      * 通过jni进行图片模糊
@@ -31,7 +33,7 @@ public class GaussianBlur
      */
     public static void blurByJni(Bitmap bkg, int radius, ImageView view) {
         long startMs = System.currentTimeMillis();
-        float scaleFactor = 8;
+        float scaleFactor = 1;
         int width = (int)(view.getMeasuredWidth()/scaleFactor);
         int height = (int)(view.getMeasuredHeight()/scaleFactor);
 
@@ -45,7 +47,12 @@ public class GaussianBlur
 
         int[] pixels = new int[width*height];
         overlay.getPixels(pixels, 0, width, 0, 0, width, height);
-        int[] newPixels = toGaussianBlur(pixels,radius,width,height);
+
+        int[] newPixels = new int[width*height];
+        toBoxBlur(pixels,newPixels,radius,width,height);
+
+
+//        int[] newPixels = toGaussianBlur(pixels,radius,width,height);
         overlay.setPixels(newPixels, 0, width, 0, 0, width, height);
 
         view.setImageBitmap(overlay);
@@ -65,7 +72,7 @@ public class GaussianBlur
     {
         long startMs = System.currentTimeMillis();
         //[1,25] 不能超出这个范围
-        float scaleFactor = 8;
+        float scaleFactor = 1;
 
         int width = (int)(view.getMeasuredWidth()/scaleFactor);
         int height = (int)(view.getMeasuredHeight()/scaleFactor);
@@ -208,6 +215,142 @@ public class GaussianBlur
         }
         return ((int)(red_sum))<<16 | ((int)(green_sum))<<8 |((int)(blue_sum));
     }
+
+
+    //------------------------- Box Blur -----------------------------------------------------------
+
+    /**
+     * 平均模糊
+     */
+    private static void boxBlur (int[] scl,int[] tcl,int w,int h,int r) {
+        for(int i=0; i<scl.length; i++)
+        {
+            tcl[i] = scl[i];
+        }
+        boxBlurH(tcl,scl, w, h, r);
+        boxBlurT(scl, tcl, w, h, r);
+    }
+
+    private static void boxBlurH (int[] scl,int[] tcl,int w,int h,int r)
+    {
+        float iarr = 1.0f / (r+r+1);
+        for(int i=0; i<h; i++)
+        {
+            int ti = i*w, li = ti, ri = ti+r;
+            int fv = scl[ti],lv = scl[ti+w-1];
+
+            int val_r = (r+1)*((fv >> 16) & 0xFF);
+            int val_g = (r+1)*((fv >> 8) & 0xFF);
+            int val_b = (r+1)*(fv & 0xFF);
+
+            for(int j=0; j<r; j++)
+            {
+                val_r += (scl[ti+j] >> 16) & 0xFF;
+                val_g += (scl[ti+j] >> 8) & 0xFF;
+                val_b += scl[ti+j] & 0xFF;
+            }
+
+            for(int j=0  ; j<=r ; j++)
+            {
+                int index = ri++;
+                val_r += ((scl[index] >> 16) & 0xFF) - ((fv >> 16) & 0xFF);
+                val_g += ((scl[index] >> 8) & 0xFF) - ((fv >> 8) & 0xFF);
+                val_b += (scl[index] & 0xFF) -  (fv & 0xFF);
+
+                tcl[ti++] = (0xFF << 24) | (Math.round(val_r*iarr) << 16) | (Math.round(val_g*iarr) << 8) | Math.round(val_b*iarr);
+            }
+
+            for(int j=r+1; j<w-r; j++)
+            {
+                int index = ri++;
+                int index2 = li++;
+                val_r += ((scl[index] >> 16) & 0xFF) - ((scl[index2] >> 16) & 0xFF);
+                val_g += ((scl[index] >> 8) & 0xFF) - ((scl[index2] >> 8) & 0xFF);
+                val_b += (scl[index] & 0xFF) -  (scl[index2] & 0xFF);
+
+                tcl[ti++] = (0xFF << 24) | (Math.round(val_r*iarr) << 16) | (Math.round(val_g*iarr) << 8) | Math.round(val_b*iarr);
+            }
+
+            for(int j=w-r; j<w  ; j++)
+            {
+                int index = li++;
+                val_r += ((lv >> 16) & 0xFF) - ((scl[index] >> 16) & 0xFF);
+                val_g += ((lv >> 8) & 0xFF) - ((scl[index] >> 8) & 0xFF);
+                val_b += (lv & 0xFF) -  (scl[index] & 0xFF);
+
+                tcl[ti++] = (0xFF << 24) | (Math.round(val_r*iarr) << 16) | (Math.round(val_g*iarr) << 8) | Math.round(val_b*iarr);
+            }
+        }
+    }
+
+    private static void boxBlurT (int[] scl,int[] tcl,int w,int h,int r) {
+        float iarr = 1.0f / (r+r+1);
+        for(int i=0; i<w; i++) {
+            int ti = i, li = ti, ri = ti+r*w;
+            int fv = scl[ti], lv = scl[ti+w*(h-1)];
+
+            int val_r = (r+1)*((fv >> 16) & 0xFF);
+            int val_g = (r+1)*((fv >> 8) & 0xFF);
+            int val_b = (r+1)*(fv & 0xFF);
+
+            for(int j=0; j<r; j++)
+            {
+                val_r += (scl[ti+j*w] >> 16) & 0xFF;
+                val_g += (scl[ti+j*w] >> 8) & 0xFF;
+                val_b += scl[ti+j*w] & 0xFF;
+            }
+
+            for(int j=0  ; j<=r ; j++)
+            {
+                val_r += ((scl[ri] >> 16) & 0xFF) - ((fv >> 16) & 0xFF);
+                val_g += ((scl[ri] >> 8) & 0xFF) - ((fv >> 8) & 0xFF);
+                val_b += (scl[ri] & 0xFF) -  (fv & 0xFF);
+
+                tcl[ti] = (0xFF << 24) | (Math.round(val_r*iarr) << 16) | (Math.round(val_g*iarr) << 8) | Math.round(val_b*iarr);
+
+                ri+=w;ti+=w;
+            }
+
+            for(int j=r+1; j<h-r; j++)
+            {
+                val_r += ((scl[ri] >> 16) & 0xFF) - ((scl[li] >> 16) & 0xFF);
+                val_g += ((scl[ri] >> 8) & 0xFF) - ((scl[li] >> 8) & 0xFF);
+                val_b += (scl[ri] & 0xFF) -  (scl[li] & 0xFF);
+                tcl[ti] = (0xFF << 24) | (Math.round(val_r*iarr) << 16) | (Math.round(val_g*iarr) << 8) | Math.round(val_b*iarr);
+                li+=w; ri+=w; ti+=w;
+            }
+
+            for(int j=h-r; j<h  ; j++)
+            {
+                val_r += ((lv >> 16) & 0xFF) - ((scl[li] >> 16) & 0xFF);
+                val_g += ((lv >> 8) & 0xFF) - ((scl[li] >> 8) & 0xFF);
+                val_b += (lv & 0xFF) -  (scl[li] & 0xFF);
+
+                tcl[ti] = (0xFF << 24) | (Math.round(val_r*iarr) << 16) | (Math.round(val_g*iarr) << 8) | Math.round(val_b*iarr);
+                li+=w; ti+=w;
+            }
+        }
+    }
+
+
+    private static int[]  boxesForGauss(double sigma,int n)
+    {
+        double wIdeal = Math.sqrt((12*sigma*sigma/n)+1);
+        double wl = Math.floor(wIdeal);if(wl%2==0) {wl--;}
+        double wu = wl+2;
+
+        double mIdeal = (12*sigma*sigma - n*wl*wl - 4*n*wl - 3*n)/(-4*wl - 4);
+        long m = Math.round(mIdeal);
+
+        int[] sizes = new int[n];
+        for(int i=0; i<n; i++)
+        {
+            sizes[i] = (int) (i<m?wl:wu);
+        }
+        return sizes;
+    }
+
+
 
 
 

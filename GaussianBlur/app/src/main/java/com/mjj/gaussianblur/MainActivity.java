@@ -28,7 +28,8 @@ public class MainActivity extends AppCompatActivity
                 imageView.getViewTreeObserver().removeOnPreDrawListener(this);
                 imageView.buildDrawingCache();
                 bitmap = imageView.getDrawingCache();
-                GaussianBlur.blurByRenderScript(bitmap, 10, imageView2, MainActivity.this);
+                GaussianBlur.blurByJni(bitmap, 5, imageView2);
+//                GaussianBlur.blurByRenderScript(bitmap, 10, imageView2, MainActivity.this);
                 return true;
             }
         });
