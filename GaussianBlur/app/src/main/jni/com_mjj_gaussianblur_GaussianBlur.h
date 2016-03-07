@@ -4,9 +4,6 @@
 
 #ifndef _Included_com_mjj_gaussianblur_GaussianBlur
 #define _Included_com_mjj_gaussianblur_GaussianBlur
-
-
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -16,10 +13,15 @@ extern "C" {
  * Signature: ([IIII)[I
  */
 JNIEXPORT jintArray JNICALL Java_com_mjj_gaussianblur_GaussianBlur_toGaussianBlur
-        (JNIEnv *, jclass, jintArray, jint, jint, jint);
+  (JNIEnv *, jclass, jintArray, jint, jint, jint);
 
+/*
+ * Class:     com_mjj_gaussianblur_GaussianBlur
+ * Method:    toBoxBlur
+ * Signature: ([I[IIII)V
+ */
 JNIEXPORT void JNICALL Java_com_mjj_gaussianblur_GaussianBlur_toBoxBlur
-        (JNIEnv *, jclass, jintArray, jintArray, jint, jint, jint);
+  (JNIEnv *, jclass, jintArray, jintArray, jint, jint, jint);
 
 #ifdef __cplusplus
 }

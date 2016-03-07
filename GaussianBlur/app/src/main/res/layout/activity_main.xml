@@ -10,12 +10,43 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.mjj.gaussianblur.MainActivity">
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="NDK均值模糊"
+            android:onClick="boxBlur"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="NDK高斯模糊"
+            android:onClick="gaussianBlur"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="RenderScript"
+            android:onClick="renderScript"/>
+    </LinearLayout>
+
     <SeekBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/seekBar"
-        android:layout_marginBottom="100dp"
         android:layout_gravity="center_horizontal" />
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_margin="20dp"
+        />
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="300dp">

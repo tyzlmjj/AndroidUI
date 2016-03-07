@@ -47,7 +47,6 @@ jdoubleArray oneDimensionalWeight(JNIEnv *env,jint radius)
 
      jdoubleArray  array = env->NewDoubleArray(size);
      env->SetDoubleArrayRegion(array,0,size,weightArray);
-     free(weightArray);
      return array;
 }
 
@@ -121,7 +120,7 @@ JNIEXPORT jintArray JNICALL Java_com_mjj_gaussianblur_GaussianBlur_toGaussianBlu
 
     //权重
     jdoubleArray  temArray = oneDimensionalWeight(env,radius);
-    double *weight = env->GetDoubleArrayElements(temArray,false);
+    jdouble *weight = env->GetDoubleArrayElements(temArray,false);
 
     for (int i = 0; i < size; ++i)
     {
@@ -138,8 +137,6 @@ JNIEXPORT jintArray JNICALL Java_com_mjj_gaussianblur_GaussianBlur_toGaussianBlu
     env->SetIntArrayRegion(result, 0, size, newBuf);
     env->ReleaseIntArrayElements(buf, oldBuf, 0);
     env->ReleaseDoubleArrayElements(temArray, weight, 0);
-    free(newBuf);
-    free(temBuf);
 
     return result;
 }
