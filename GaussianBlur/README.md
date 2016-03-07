@@ -10,12 +10,14 @@ Renderscript的优缺点
 ----------------
 Renderscript，原则上讲应该是安卓上的最佳选择。它自带了模糊图片的算法，在计算速度上可以说已经非常出色了。但是……
 
-**<font color="#00DD00">优点</font>**：
+**优点**：
+
 1. 计算速度较快，主要是对CPU的利用比较全面
 2. 配置工程方便（相对NDK）
 3. 在不需要自定义算法的情况下使用还是很方便的，只需要写一段java代码就可以完成操作
 
-**<font color="#DD0000">缺点</font>**：
+**缺点**：
+
 1. 学习成本高（如果要自定义一些算法的话）
 2. 移植代码基本不可能
 3. 对安卓版本要求较高，比如模糊图片的算法就必须要API17以上 
@@ -31,13 +33,15 @@ NDK的优缺点
 -------
 NDK在讲求性能的应用中肯定是不能少的，不过我自己用的并不多！所以如果有说的不对请见谅！
 
-**<font color="#00DD00">优点</font>**：
+**优点**：
+
 1. 用C或C++，肯定很多人都会（感觉又回到在学校A题的时候了）。
 2. 可应用范围比较广泛， 代码移植方便，有很多现成的库可以拉过来用
 3. 在进行高复杂度的计算时甩Java好几条街
 
 
-**<font color="#DD0000">缺点</font>**：
+**缺点**：
+
 1. 我自己写了半天算法完全追不上Renderscript的速度，所以需要有深厚的功力才能很好的发挥它的作用
 2. Eclipse上配置繁琐，Stusio中稍微简化了点
 3. 代码调试查错比较麻烦，可能还是跟我的水平有关吧！
@@ -80,7 +84,11 @@ NDK在讲求性能的应用中肯定是不能少的，不过我自己用的并�
 ----
 
 均值模糊算法：http://blog.ivank.net/fastest-gaussian-blur.html
+
 二维高斯模糊算法：http://www.ruanyifeng.com/blog/2012/11/gaussian_blur.html
+
 一维高斯模糊算法：http://www.cnblogs.com/hoodlum1980/p/4528486.html
+
 Android NDK配置：http://blog.csdn.net/tyzlmjj/article/details/50725281
+
 RenderScript 配置和使用：http://blog.csdn.net/tyzlmjj/article/details/50747173
