@@ -24,7 +24,8 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        //设置toolbar高度
+
+        //设置toolbar高度和内边距
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
         {
             mToolbar.getLayoutParams().height = getAppBarHeight();
@@ -33,8 +34,6 @@ public class MainActivity extends AppCompatActivity
                     mToolbar.getPaddingRight(),
                     mToolbar.getPaddingBottom());
         }
-
-
 
         setSupportActionBar(mToolbar);
 
@@ -65,6 +64,10 @@ public class MainActivity extends AppCompatActivity
         final float scale = getResources().getDisplayMetrics().density;
         return (int) (dipValue * scale + 0.5f);
     }
+
+
+
+//------------------ 下面都是自动生成的--------------------------------------------------------------
 
     private void init()
     {
