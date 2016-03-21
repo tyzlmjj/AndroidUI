@@ -1,13 +1,10 @@
 # AndroidUI
 
-###博客地址：http://blog.csdn.net/tyzlmjj
+###博客地址：
+http://blog.majiajie.me/
 
-- ViewFlipper   http://blog.csdn.net/tyzlmjj/article/details/48576219
-- RecyclerViewLocation   http://blog.csdn.net/tyzlmjj/article/details/49227601
-- ChengeTheme   http://blog.csdn.net/tyzlmjj/article/details/49255019
-- ClearEditText http://blog.csdn.net/tyzlmjj/article/details/49156765
-- ClickEffect 	http://blog.csdn.net/tyzlmjj/article/details/50096777
-- MaterialProgressDrawable 	http://blog.csdn.net/tyzlmjj/article/details/50557397
+http://blog.csdn.net/tyzlmjj
+
 
 ###GitHub下载单个文件夹教程：
 
