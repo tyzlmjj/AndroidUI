@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context="me.majiajie.viewdraghelper.MainActivity">
+    <me.majiajie.viewdraghelper.ViewDragHelperLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_first"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:background="#99ff0000"
+            android:text="first" />
+
+        <TextView
+            android:id="@+id/tv_second"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:background="#9900ff00"
+            android:text="second" />
+
+        <TextView
+            android:id="@+id/tv_third"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:background="#990000ff"
+            android:text="third" />
+
+    </me.majiajie.viewdraghelper.ViewDragHelperLayout>
+
+</RelativeLayout>
